@@ -7,7 +7,7 @@
             <% if (!_.isEmpty(atuais)) { %>
                 <% _.each(atuais, function (c) { %>
                     <li class="atual">
-                        <a href="#"><i class="icon-file icon-large"></i><%= c.nome %></a>
+                        <a href="api/arquivo/<%= c.id %>"><i class="icon-file icon-large"></i><%= c.nome %></a>
                         <i class="icon-remove pull-right" rel="tooltip"
                             title="Excluir arquivo" data-placement="right"
                             data-id="<%= c.id %>"></i>
