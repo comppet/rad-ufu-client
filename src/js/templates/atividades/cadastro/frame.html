@@ -27,18 +27,14 @@
             <label class="control-label" for="dataInicio">Inicio</label>
             <div class="controls">
               <input class="span4 datepicker" type="text" id="dataInicio" placeholder="dd/mm/aaaa"
-                value="<% if (atual && atual.inicio) print(atual.inicio)%>"
-                data-date-format="dd/mm/yyyy" data-date-weekstart="1" data-date-autoclose="true"
-                data-date-today-highlight="true" data-date-language="pt-BR">
+                value="<% if (atual && atual.inicio) print(atual.inicio)%>">
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="dataFim">Fim</label>
             <div class="controls">
-              <input class="span4 datepicker" type="text" id="dataFim" placeholder="dd/mm/aaaa"
-                value="<% if (atual && atual.fim) print(atual.fim)%>"
-                data-date-format="dd/mm/yyyy" data-date-weekstart="1" data-date-autoclose="true"
-                data-date-today-highlight="true" data-date-language="pt-BR">
+              <input class="span4" type="text" id="dataFim" placeholder="dd/mm/aaaa"
+                value="<% if (atual && atual.fim) print(atual.fim)%>">
             </div>
           </div>
           <div class="controls">

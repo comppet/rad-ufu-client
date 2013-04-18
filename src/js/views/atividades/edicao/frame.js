@@ -58,7 +58,7 @@ define([
                 this.$("[rel=\"tooltip\"]").tooltip();
 
                 // inicializa datepickers
-                this.$(".datepicker").datepicker();
+                //this.$(".datepicker").datepicker();
 
                 return this;
 

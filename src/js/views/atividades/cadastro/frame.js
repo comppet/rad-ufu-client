@@ -77,7 +77,7 @@ define([
                 this.$("[rel=\"tooltip\"]").tooltip();
 
                 // inicializa datepickers
-                this.$(".datepicker").datepicker();
+                //this.$(".datepicker").datepicker();
 
                 return this;
 
@@ -110,8 +110,8 @@ define([
                 });
 
                 var dateParse = function (dateStr) {
-                        var formato     = this.$("#dataInicio").data('date-format'),
-                            lang        = this.$("#dataInicio").data('date-language');
+                        var formato  = "dd/mm/yyyy",//this.$("#dataInicio").data('date-format'),
+                            lang     = "pt-BR"; //this.$("#dataInicio").data('date-language');
 
                             formato  = $.fn.datepicker.DPGlobal.parseFormat(formato);
                     return $.fn.datepicker.DPGlobal.parseDate(dateStr, formato, lang);
@@ -119,6 +119,10 @@ define([
 
                 dataInicio  = this.$("#dataInicio").val();
                 dataFim     = this.$("#dataFim").val();
+
+                // BUG: dateParse retorna data valida quando o valor do campo é uma
+                // string qualquer
+                console.log(dateParse(dataInicio));
 
                 if (!dataInicio) {
                     dadosCadastro.err.push("Escolha a data em que a atividade iniciou");
@@ -176,7 +180,9 @@ define([
 
                             a.destroy();
                             _.each(comprovantes, function (c) { c.destroy(); });
-                            console.log("cadastroAtividadeFrame > ", arguments);
+                            console.log("cadastroAtividadeFrame > erro:", arguments);
+                            alert("Houve um erro ao tentar cadastrar a atividade. Certifique-se que todos os campos estão devidamente preenchidos", {type: "err"});
+
                         });
                     } else {
                         console.log("Erro na validação da atividade: ", a.validationError);
