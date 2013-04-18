@@ -22,11 +22,16 @@ module.exports = function(grunt) {
         bootstrap: {
           src: [
             'node_modules/bootstrap/js/bootstrap-alert.js',
-            'node_modules/bootstrap/js/bootstrap-tooltip.js',
-            'components/bootstrap-datepicker/js/bootstrap-datepicker.js',
-            'components/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.js'
+            'node_modules/bootstrap/js/bootstrap-tooltip.js'
           ],
           dest: 'node_modules/bootstrap/bootstrap.js'
+        },
+        pickadate: {
+          src: [
+            'node_modules/pickadate/source/pickadate.js',
+            'node_modules/pickadate/translations/pickadate.pt_BR.js'
+          ],
+          dest: 'node_modules/pickadate/pickadate.js'
         }
     },
     min: {
@@ -111,7 +116,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('setup', 'configurar o projeto para desenvolvimento', function () {
     grunt.task.run(
-      ['less:style', 'concat:bootstrap']
+      ['less:style', 'concat:bootstrap', 'concat:pickadate']
     );
   });
 

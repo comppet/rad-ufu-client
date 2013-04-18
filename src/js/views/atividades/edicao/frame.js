@@ -58,7 +58,10 @@ define([
                 this.$("[rel=\"tooltip\"]").tooltip();
 
                 // inicializa datepickers
-                //this.$(".datepicker").datepicker();
+                this.$(".datepicker").pickadate({
+                    format: "dd de mmmm de yyyy",
+                    formatSubmit: "dd/mm/yyyy"
+                });
 
                 return this;
 

@@ -77,7 +77,10 @@ define([
                 this.$("[rel=\"tooltip\"]").tooltip();
 
                 // inicializa datepickers
-                //this.$(".datepicker").datepicker();
+                this.$(".datepicker").pickadate({
+                    format: "dd de mmmm de yyyy",
+                    formatSubmit: "dd/mm/yyyy"
+                });
 
                 return this;
 
@@ -109,30 +112,28 @@ define([
                     subView.preparaDados(dadosCadastro);
                 });
 
-                var dateParse = function (dateStr) {
-                        var formato  = "dd/mm/yyyy",//this.$("#dataInicio").data('date-format'),
-                            lang     = "pt-BR"; //this.$("#dataInicio").data('date-language');
-
-                            formato  = $.fn.datepicker.DPGlobal.parseFormat(formato);
-                    return $.fn.datepicker.DPGlobal.parseDate(dateStr, formato, lang);
+                var dateParse = function (el) {
+                    return el.pickadate().data("pickadate").getDate(true);
                 };
 
-                dataInicio  = this.$("#dataInicio").val();
-                dataFim     = this.$("#dataFim").val();
+                var dateFormat  = function (el) {
+                    return el.pickadate().data("pickadate").getDate("dd/mm/yyyy");
+                };
 
-                // BUG: dateParse retorna data valida quando o valor do campo é uma
-                // string qualquer
-                console.log(dateParse(dataInicio));
+                dataInicio  = this.$("#dataInicio");
+                dataFim     = this.$("#dataFim");
 
-                if (!dataInicio) {
+                console.log("datas: ", dateFormat(dataInicio), dateFormat(dataFim));
+
+                if (!dataInicio.val()) {
                     dadosCadastro.err.push("Escolha a data em que a atividade iniciou");
-                } else if (!dataFim) {
+                } else if (!dataFim.val()) {
                     dadosCadastro.err.push("Escolha a data em que a atividade terminou");
                 } else if (dateParse(dataInicio) > dateParse(dataFim)) {
                     dadosCadastro.err.push("Escolha uma data de inicio anterior a data de fim");
                 } else {
-                    dadosCadastro.inicio = dataInicio;
-                    dadosCadastro.fim    = dataFim;
+                    dadosCadastro.inicio = dateFormat(dataInicio);
+                    dadosCadastro.fim    = dateFormat(dataFim);
                 }
 
                 return dadosCadastro;

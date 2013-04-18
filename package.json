@@ -24,7 +24,8 @@
     "FontAwesome": "git://github.com/kersten/Font-Awesome.git",
     "requirejs": "~2.1.4",
     "backbone": "~0.9.9",
-    "underscore": "~1.4.4"
+    "underscore": "~1.4.4",
+    "pickadate": "~2.1.6"
   },
   "devDependencies": {
     "grunt-contrib-less": "~0.3.2",

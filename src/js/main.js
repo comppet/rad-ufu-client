@@ -10,14 +10,16 @@ require.config({
         "underscore":    "../../node_modules/underscore/underscore",
         "backbone":      "../../node_modules/backbone/backbone",
         "text":          "../../node_modules/text/text",
-        "bootstrap":     "../../node_modules/bootstrap/bootstrap"
+        "bootstrap":     "../../node_modules/bootstrap/bootstrap",
+        "pickadate":     "../../node_modules/pickadate/pickadate"
     },
 
     shim : {
         "app" : {
             deps : [
                 "backbone",
-                "bootstrap"
+                "bootstrap",
+                "pickadate"
             ]
         },
         "router": {
@@ -26,7 +28,6 @@ require.config({
         "bootstrap" : {
             deps : ["jquery"]
         },
-
         "backbone" : {
             //These script dependencies should be loaded before loading
             //backbone.js

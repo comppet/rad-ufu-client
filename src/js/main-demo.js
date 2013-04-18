@@ -11,6 +11,7 @@ require.config({
         "backbone":     "../../node_modules/backbone/backbone",
         "text":         "../../node_modules/text/text",
         "bootstrap":    "../../node_modules/bootstrap/bootstrap",
+        "pickadate":     "../../node_modules/pickadate.js-gh-pages/pickadate",
         "dummyData":    "util/dummyData"
     },
 
@@ -18,7 +19,8 @@ require.config({
         "app" : {
             deps : [
                 "backbone",
-                "bootstrap"
+                "bootstrap",
+                "pickadate"
             ]
         },
         "router": {

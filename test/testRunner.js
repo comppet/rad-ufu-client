@@ -8,6 +8,7 @@ require.config({
         "backbone": "../node_modules/backbone/backbone",
         "localStorage": "../node_modules/Backbone.localStorage/backbone.localStorage",
         "bootstrap": "../node_modules/bootstrap/bootstrap",
+        "pickadate": "../node_modules/pickadate/pickadate",
         "text": "../node_modules/text/text",
         "chai": "../node_modules/chai/chai",
         "sinon": "../node_modules/sinon/pkg/sinon",
@@ -25,7 +26,8 @@ require.config({
             deps: [
                 "localStorage",
                 "mocha",
-                "bootstrap"
+                "bootstrap",
+                "pickadate"
             ]
         },
         "mocha": {
@@ -51,6 +53,9 @@ require.config({
         },
         "underscore": {
             exports : "_"
+        },
+        "pickadate": {
+            deps: ["jquery"]
         }
     }
 });
