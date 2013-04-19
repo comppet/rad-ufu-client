@@ -175,7 +175,9 @@ define([
                             comprovanteCollection.add(comprovantes);
                             atividadeCollection.add(a);
                             _.each(comprovantes, function (c) { a.addComprovante(c); });
-                            alert("Atividade Cadastrada com sucesso", { type: "success" });
+                            //alert("Atividade Cadastrada com sucesso", { type: "success" });
+                            window.location.href = "/rad-ufu/#/atividades/" +
+                                $("#categoria-selector option:selected").text().trim().toLowerCase();
 
                         }, function (jqXHR, textStatus, errorThrown) {
 
