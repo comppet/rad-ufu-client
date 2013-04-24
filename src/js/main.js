@@ -40,6 +40,9 @@ require.config({
         },
         "underscore" : {
             exports : "_"
+        },
+        "pickadate": {
+            deps: ["jquery"]
         }
     }
 });
