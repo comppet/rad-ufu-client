@@ -7,7 +7,8 @@
         <div class="page-header">
             <h2 align="center">Gerar Relatório</h2>
         </div>
-        <span class="err"></span>
+        <span id="err"></span>
+        <a id="dloadRelatorio" style="display:none;" href=""></a>
         <div class="form-horizontal">
             <div class="control-group">
                 <label for="dataInicio" class="control-label">Início</label>
@@ -24,7 +25,7 @@
             <div class="control-group">
                 <label for="classe" class="control-label">Classe</label>
                 <div class="controls">
-                    <select class="span4" name="nivel" id="">
+                    <select class="span4" id="classe">
                         <option value="0">Auxiliar</option>
                         <option value="1">Assistente</option>
                         <option value="2">Adjunto</option>
@@ -35,7 +36,7 @@
             <div class="control-group">
                 <label for="nivel" class="control-label">Nível</label>
                 <div class="controls">
-                    <select class="span4" name="nivel" id="">
+                    <select class="span4" id="nivel">
                         <option value="0">I para II</option>
                         <option value="1">II para III</option>
                         <option value="2">III para IV</option>
@@ -46,7 +47,7 @@
                 <label class="control-label">Categoria</label>
                 <div class="controls">
                     <% _.each(categorias, function (c) { %>
-                        <input type="checkbox" value="<%= c.id %>">  <%= c.nome %><br/>
+                        <input type="checkbox" name="categoria" value="<%= c.id %>">  <%= c.nome %><br/>
                     <% }); %>
                 </div>
             </div>
