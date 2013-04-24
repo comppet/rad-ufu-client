@@ -147,7 +147,9 @@ define([
                 atividade = this.preparaDados();
                 comprovantes = atividade.comprovantes;
                 atividadeAttrHash = _.omit(atividade, "err", "comprovantes");
-                var alert = _.bind(this.alert, this);
+
+                var alert    = _.bind(this.alert, this);
+                var redirect = _.bind(this.redirect, this);
 
                 var a = new Atividade(atividadeAttrHash);
 
@@ -175,9 +177,9 @@ define([
                             comprovanteCollection.add(comprovantes);
                             atividadeCollection.add(a);
                             _.each(comprovantes, function (c) { a.addComprovante(c); });
-                            //alert("Atividade Cadastrada com sucesso", { type: "success" });
-                            window.location.href = "/rad-ufu/#/atividades/" +
-                                $("#categoria-selector option:selected").text().trim().toLowerCase();
+
+                            redirect("/rad-ufu/#/atividades/" +
+                                $("#categoria-selector option:selected").text());
 
                         }, function (jqXHR, textStatus, errorThrown) {
 
@@ -223,6 +225,10 @@ define([
                 };
 
                 alertTypes[options.type].setElement("#err").render(message);
+            },
+
+            redirect: function (location) {
+                window.location.href = location.trim().toLowerCase();
             },
 
             cleanUp: function() {

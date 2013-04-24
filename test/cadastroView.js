@@ -270,6 +270,8 @@ define([
                         this.atividadeSaveStub   = sinon.stub(Atividade.prototype, "save")
                             .returns(new $.Deferred().resolve({id: 1}));
 
+                        this.cadastroRedirectStub = sinon.stub(CadastroFrame.prototype, "redirect");
+
                         this.atividadeParseStub    = sinon.stub(Atividade.prototype, "parse")
                             .returns({
                                 "id":1,
@@ -290,12 +292,14 @@ define([
                         this.atividadeSaveStub.restore();
                         this.atividadeParseStub.restore();
                         this.ajaxStub.restore();
+                        this.cadastroRedirectStub.restore();
                         done();
                     });
                     it("Deve ser cadastrada uma nova atividade quando houver um click no botão 'cadastrar'", function (done) {
                         this.cadastroView.$el.find("#cadastrar").click();
                         this.comprovanteSaveSpy.should.have.been.calledTwice;
                         this.atividadeSaveStub.should.have.been.calledOnce;
+                        this.cadastroRedirectStub.should.have.been.calledOnce;
                         done();
                     });
                 });
