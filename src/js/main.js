@@ -11,7 +11,8 @@ require.config({
         "backbone":      "../../node_modules/backbone/backbone",
         "text":          "../../node_modules/text/text",
         "bootstrap":     "../../node_modules/bootstrap/bootstrap",
-        "pickadate":     "../../node_modules/pickadate/pickadate"
+        "pickadate":     "../../node_modules/pickadate/pickadate",
+        "datejs":        "../../node_modules/datejs/lib/date-pt-BR"
     },
 
     shim : {
@@ -19,7 +20,8 @@ require.config({
             deps : [
                 "backbone",
                 "bootstrap",
-                "pickadate"
+                "pickadate",
+                "datejs"
             ]
         },
         "router": {

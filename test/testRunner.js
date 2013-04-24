@@ -9,6 +9,7 @@ require.config({
         "localStorage": "../node_modules/Backbone.localStorage/backbone.localStorage",
         "bootstrap": "../node_modules/bootstrap/bootstrap",
         "pickadate": "../node_modules/pickadate/pickadate",
+        "datejs":        "../../node_modules/datejs/lib/date-pt-BR",
         "text": "../node_modules/text/text",
         "chai": "../node_modules/chai/chai",
         "sinon": "../node_modules/sinon/pkg/sinon",
@@ -27,7 +28,8 @@ require.config({
                 "localStorage",
                 "mocha",
                 "bootstrap",
-                "pickadate"
+                "pickadate",
+                "datejs"
             ]
         },
         "mocha": {

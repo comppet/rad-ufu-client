@@ -12,6 +12,7 @@ require.config({
         "text":         "../../node_modules/text/text",
         "bootstrap":    "../../node_modules/bootstrap/bootstrap",
         "pickadate":     "../../node_modules/pickadate.js-gh-pages/pickadate",
+        "datejs":        "../../node_modules/datejs/lib/date-pt-BR",
         "dummyData":    "util/dummyData"
     },
 
@@ -20,7 +21,8 @@ require.config({
             deps : [
                 "backbone",
                 "bootstrap",
-                "pickadate"
+                "pickadate",
+                "datejs"
             ]
         },
         "router": {
