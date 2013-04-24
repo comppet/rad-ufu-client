@@ -14,7 +14,10 @@ define([
 
             render : function() {
                 this.$el.html(_.template(relatorioFrameTpl));
-                this.$(".datepicker").datepicker();
+                this.$(".datepicker").pickadate({
+                    format: "dd de mmmm de yyyy",
+                    formatSubmit: "dd/mm/yyyy"
+                });
                 return this;
             },
 
