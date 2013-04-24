@@ -107,7 +107,8 @@ define([
 
                             comprovanteCollection.add(comprovantesToAdd);
                             _.each(comprovantesToAdd, function (c) { addToAtividade(c); });
-                            alert("Dados da atividade alterados", { type: "success" });
+                            //alert("Dados da atividade alterados", { type: "success" });
+                            history.go(-1);
 
                         }, function (jqXHR, textStatus, errorThrown) {
                             _.each(comprovantesToAdd, function (c) { c.destroy(); });
