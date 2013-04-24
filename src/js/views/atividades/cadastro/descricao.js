@@ -30,8 +30,8 @@ define([
 
                 if(!d.length) // se a descricao tem tamanho igual a zero
                     dadosCadastro.err.push("Preencha o campo descricao");
-                else if(d.length > 2300) // se a descricao tem tamanho maior que 2300
-                    dadosCadastro.err.push("Descricao possui mais do que 2300 caracteres");
+                else if(d.length > 500) // se a descricao tem tamanho maior que 2300
+                    dadosCadastro.err.push("A Descricao não pode possuir mais de 500 caracteres");
 
                 dadosCadastro.descricao = d;
             }
