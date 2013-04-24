@@ -6,33 +6,27 @@ define([
     "collections/comprovante",
     "views/atividades/cadastro/categorias",
     "views/atividades/cadastro/tipos",
-    "views/alerts/successAlert",
-    "views/alerts/errorAlert",
     "util/dateHelper",
+    "views/alerts/alertableView",
     "text!templates/atividades/cadastro/frame.html"
 
     ], function(Atividade, Comprovante, atividadeCollection,
                 comprovanteCollection, CategoriasView,
                 TiposView,
-                SuccessAlertView,
-                ErrorAlertView,
                 dateHelper,
+                AlertableView,
                 cadastroAtivFrameTpl) {
 
-        var CadastroAtividadeFrame = Backbone.View.extend({
+        var CadastroAtividadeFrame = AlertableView.extend({
 
             el : "#content",
 
             tpl: cadastroAtivFrameTpl,
 
-            subViews : {
+            subViews : _.extend({
                 categorias : null,
-                tipos      : null,
-                alert: {
-                    sucss      : new SuccessAlertView(),
-                    err        : new ErrorAlertView()
-                }
-            },
+                tipos      : null
+            }, AlertableView.prototype.subViews),
 
             events: {
                 "click #cadastrar": "criarAtividade"
@@ -188,37 +182,11 @@ define([
                     }
                 }
 
-
-/*
-                var comprovanteCriado = _.bind(function (atividade) {
-                    return _.bind(function (comprovante) {
-                        atividade.addComprovante(comprovante);
-                        if (atividade.get("comprovantes").length === _.keys(comprovantes).length)
-                            this.alert("Atividade cadastrada com sucesso", { type: "success" });
-                    }, this);
-                }, this);
-
-                var criarComprovantes = function (atividade) {
-                    _.each(comprovantes, function (file) {
-                        var c = { nome: file.name, arquivo: file, atividade: atividade.get("id") };
-                        comprovanteCollection.create(c, { success: comprovanteCriado(atividade) });
-                    });
-                };
-*/
                 if (!_.isEmpty(atividade.err)) {
                     _.each(atividade.err, function (errMsg) {
                         this.alert(errMsg, { type: "err" });
                     }, this);
                 }
-            },
-
-            alert: function (message, options) {
-                var alertTypes = {
-                    err:   this.subViews.alert.err,
-                    success: this.subViews.alert.sucss
-                };
-
-                alertTypes[options.type].setElement("#err").render(message);
             },
 
             redirect: function (location) {
