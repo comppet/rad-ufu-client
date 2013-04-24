@@ -8,6 +8,7 @@ define([
     "views/atividades/cadastro/tipos",
     "views/alerts/successAlert",
     "views/alerts/errorAlert",
+    "util/dateHelper",
     "text!templates/atividades/cadastro/frame.html"
 
     ], function(Atividade, Comprovante, atividadeCollection,
@@ -15,6 +16,7 @@ define([
                 TiposView,
                 SuccessAlertView,
                 ErrorAlertView,
+                dateHelper,
                 cadastroAtivFrameTpl) {
 
         var CadastroAtividadeFrame = Backbone.View.extend({
@@ -112,28 +114,20 @@ define([
                     subView.preparaDados(dadosCadastro);
                 });
 
-                var dateParse = function (el) {
-                    return el.pickadate().data("pickadate").getDate(true);
-                };
-
-                var dateFormat  = function (el) {
-                    return el.pickadate().data("pickadate").getDate("dd/mm/yyyy");
-                };
-
                 dataInicio  = this.$("#dataInicio");
                 dataFim     = this.$("#dataFim");
 
-                console.log("datas: ", dateFormat(dataInicio), dateFormat(dataFim));
+                console.log("datas: ", dateHelper.format(dataInicio), dateHelper.format(dataFim));
 
                 if (!dataInicio.val()) {
                     dadosCadastro.err.push("Escolha a data em que a atividade iniciou");
                 } else if (!dataFim.val()) {
                     dadosCadastro.err.push("Escolha a data em que a atividade terminou");
-                } else if (dateParse(dataInicio) > dateParse(dataFim)) {
+                } else if (dateHelper.parse(dataInicio) > dateHelper.parse(dataFim)) {
                     dadosCadastro.err.push("Escolha uma data de inicio anterior a data de fim");
                 } else {
-                    dadosCadastro.inicio = dateFormat(dataInicio);
-                    dadosCadastro.fim    = dateFormat(dataFim);
+                    dadosCadastro.inicio = dateHelper.format(dataInicio);
+                    dadosCadastro.fim    = dateHelper.format(dataFim);
                 }
 
                 return dadosCadastro;
