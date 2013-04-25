@@ -81,7 +81,8 @@ define([
             },
 
             relatorioPronto: function () {
-                this.$("#dloadRelatorio").attr("href", this.model.get("dloadLink"));
+                var dloadPrefix = "api/arquivo/relatorio/";
+                this.$("#dloadRelatorio").attr("href", dloadPrefix + this.model.get("dloadLink"));
                 this.$("#dloadRelatorio")[0].click();
             },
 
