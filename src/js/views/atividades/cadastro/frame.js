@@ -167,7 +167,7 @@ define([
                             _.each(comprovantes, function (c) { a.addComprovante(c); });
 
                             redirect("/rad-ufu/#/atividades/" +
-                                $("#categoria-selector option:selected").text());
+                                $("#categoria-selector option:selected").text().trim().toLowerCase());
 
                         }, function (jqXHR, textStatus, errorThrown) {
 
@@ -190,7 +190,7 @@ define([
             },
 
             redirect: function (location) {
-                window.location.href = location.trim().toLowerCase();
+                window.location.href = location;
             },
 
             cleanUp: function() {
