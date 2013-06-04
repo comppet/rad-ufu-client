@@ -58,6 +58,11 @@ module.exports = function(grunt) {
       }
     },
     copy: {
+      setup: {
+        files: [
+          { src: 'node_modules/FontAwesome/font/*', dest: 'src/font/'}
+        ]
+      },
       page: {
         files: [
           { src: 'deploy.php', dest: 'build/radufu/index.php'}
@@ -116,7 +121,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('setup', 'configurar o projeto para desenvolvimento', function () {
     grunt.task.run(
-      ['less:style', 'concat:bootstrap', 'concat:pickadate']
+      ['less:style', 'concat:bootstrap', 'concat:pickadate', 'copy:setup']
     );
   });
 

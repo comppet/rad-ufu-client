@@ -2,12 +2,9 @@
   "name": "rad-ufu-client",
   "version": "0.0.0",
   "description": "Cliente para o sistema rad-ufu",
-  "scripts": {
-    "install": "mkdir src/font && cp node_modules/FontAwesome/font/* src/font/ || ./node_modules/.bin/grunt setup"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pablohenrique/rad-ufu.git"
+    "url": "https://github.com/yass-n/rad-ufu-client"
   },
   "keywords": [
     "br",
@@ -26,7 +23,7 @@
     "backbone": "~0.9.9",
     "underscore": "~1.4.4",
     "pickadate": "~2.1.6",
-    "datejs": "0.0.2"
+    "moment": "~2.0.0"
   },
   "devDependencies": {
     "grunt-contrib-less": "~0.3.2",
