@@ -61,7 +61,8 @@ define([
                 });
 
                 this.on("route:paginaInicial", function(){
-                    this.viewManager.show("inicio");
+                    //this.viewManager.show("inicio");
+                    this.navigate("#/atividades");
                 });
 
                 this.on("route:defaultAction", function(actions){
