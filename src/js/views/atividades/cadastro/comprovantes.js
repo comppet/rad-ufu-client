@@ -68,8 +68,20 @@ define([
             },
 
             preparaDados: function (dadosCadastro) {
+                var tiposAceitos = ["application/pdf"], tipoInvalido = false;
+
                 if (_.isEmpty(this.selecionados))
                     dadosCadastro.err.push("Selecione um arquivo comprovante");
+
+                _.each(this.selecionados, function (f) {
+                    if (tiposAceitos.indexOf(f.type) === -1) tipoInvalido = true;
+                });
+
+                if (tipoInvalido && _.keys(this.selecionados).length > 1)
+                    dadosCadastro.err.push("O tipo de um dos arquivos não é valido. Use um pdf");
+                else if (tipoInvalido)
+                    dadosCadastro.err.push("O tipo de arquivo não é valido. Use um pdf");
+
                 // nb: os objetos aninhados não são clonados
                 dadosCadastro.comprovantes = _.clone(this.selecionados);
             },

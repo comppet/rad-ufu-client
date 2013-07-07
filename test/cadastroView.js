@@ -184,7 +184,7 @@ define([
                         $("#dataInicio").val("01/03/2013");
                         $("#dataFim").val("02/03/2013");
                         this.cadastroView.subViews.tipos.subViews
-                            .comprovantes.selecionados["foo"] = "foo";
+                            .comprovantes.selecionados["foo"] = { name:"foo", type:"application/pdf" };
                         this.dadosCadastro = this.cadastroView.preparaDados();
                         done();
                     });
@@ -199,7 +199,7 @@ define([
                         $("#dataInicio").val("01/03/2013");
                         $("#dataFim").val("02/03/2013");
                         this.cadastroView.subViews.tipos.subViews
-                            .comprovantes.selecionados["foo"] = "foo";
+                            .comprovantes.selecionados["foo"] = { name:"foo", type:"application/pdf" };
                         this.dadosCadastro = this.cadastroView.preparaDados();
                         done();
                     });
@@ -219,10 +219,17 @@ define([
                         $("#descricao").val("desc");
                         $("#dataInicio").val("01/03/2013");
                         $("#dataFim").val("02/03/2013");
-                        this.dadosCadastro = this.cadastroView.preparaDados();
                         done();
                     });
                     it("Deve ocorrer um erro se não for anexado pelo menos um comprovante", function (done) {
+                        this.dadosCadastro = this.cadastroView.preparaDados();
+                        this.dadosCadastro.err.should.have.length(1);
+                        done();
+                    });
+                    it("Deve ocorrer um erro se o tipo de arquivo não for um pdf", function (done) {
+                        this.cadastroView.subViews.tipos.subViews
+                            .comprovantes.selecionados["foo"] = { name:"foo", type:"application/notpdf" };
+                        this.dadosCadastro = this.cadastroView.preparaDados();
                         this.dadosCadastro.err.should.have.length(1);
                         done();
                     });
@@ -260,9 +267,9 @@ define([
                         $("#dataFim").val("02/03/2013");
 
                         this.cadastroView.subViews.tipos.subViews
-                            .comprovantes.selecionados["foo"] = {name:"foo"};
+                            .comprovantes.selecionados["foo"] = { name:"foo", type:"application/pdf" };
                         this.cadastroView.subViews.tipos.subViews
-                            .comprovantes.selecionados["bar"] = {name:"bar"};
+                            .comprovantes.selecionados["bar"] = { name:"bar", type:"application/pdf" };
 
                         AtividadeCollection.url    = "localhost/rad-ufu/api/atividade";
                         ComprovanteCollection.url  = "localhost/rad-ufu/api/coprovante";

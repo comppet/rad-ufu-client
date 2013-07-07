@@ -1,7 +1,7 @@
 <div class="control-group comprovantes">
     <label for="comprovantes" class="control-label">Comprovantes</label>
     <div class="controls">
-        <input id="comprovantes" type="file" multiple="multiple" style="display: none;">
+        <input id="comprovantes" type="file" multiple="multiple" style="display: none;" accept="application/pdf">
         <ul class="unstyled">
             <!-- Se existem comprovantes cadastrados para a atividade, lista todas-->
             <% if (!_.isEmpty(atuais)) { %>
