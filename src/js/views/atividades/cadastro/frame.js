@@ -166,7 +166,7 @@ define([
                             atividadeCollection.add(a);
                             _.each(comprovantes, function (c) { a.addComprovante(c); });
 
-                            redirect("/rad-ufu/#/atividades/" +
+                            redirect("/#/atividades/" +
                                 $("#categoria-selector option:selected").text().trim().toLowerCase());
 
                         }, function (jqXHR, textStatus, errorThrown) {
