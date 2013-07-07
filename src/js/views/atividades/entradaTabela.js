@@ -15,7 +15,8 @@ define([
             tagName : "tr",
 
             events: {
-                "click li i.icon-remove": "removeAtividade"
+                "click li i.icon-remove": "removeAtividade",
+                "click": "editarAtividade"
             },
 
             removeAtividade: function (ev) {
@@ -24,12 +25,18 @@ define([
                 atividadeCollection.remove(id);
             },
 
+            editarAtividade: function () {
+                var id = this.$el.data("id-atividade");
+                window.location.href = "/#/atividades/" + id + "/editar";
+            },
+
             render : function() {
                 var valor = tipoCollection.get(this.model.tipo)
                         .get("pontuacao");
 
                 this.model.pontuacao = this.model.valorMult * valor;
 
+                this.$el.data("id-atividade", this.model.id);
                 this.$el.html(_.template(atividadeTpl, this.model));
 
                 // inicializa os tooltips
