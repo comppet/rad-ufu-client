@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# testa se o script já foi executado e termina a execução caso se verdadeiro
+# testa se o script já foi executado e termina a execução se true
 test -f /etc/bootstraped && exit
 
 # Proxy da UFU :/
