@@ -18,8 +18,7 @@ require.config({
         "views":        "../src/js/views",
         "collections":  "../src/js/collections",
         "templates":    "../src/js/templates",
-        "util":         "../src/js/util",
-        "datejs":       "../node_modules/datejs/lib/date-pt-BR"
+        "util":         "../src/js/util"
     },
 
     shim: {
@@ -28,8 +27,7 @@ require.config({
                 "localStorage",
                 "mocha",
                 "bootstrap",
-                "pickadate",
-                "datejs"
+                "pickadate"
             ]
         },
         "mocha": {
