@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body style="padding-top: 40px;">
+<body style="padding-top: 40px; padding-bottom: 100px">
 
   <!-- Navbar -->
   <div class = "navbar navbar-fixed-top">
@@ -53,6 +53,8 @@
     <div class="row-fluid">
       <div class="span10 offset1">
         <div id="content"></div>
+        <hr>
+        <footer></footer>
       </div>
     </div>
   </div>
