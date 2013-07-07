@@ -47,7 +47,7 @@ define([
                 this.on("route:primeiraCategoria", function () {
                     var cat, categorias = categoriaCollection;
                     //categorias.fetch();
-                    cat = encodeURIComponent(categorias.at(0).get("nome").toLowerCase());
+                    cat = categorias.at(0).get("nome").toLowerCase();
 
                     this.navigate("#/atividades/" + cat, {trigger:true, replace:true});
                 });
