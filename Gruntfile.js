@@ -10,6 +10,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   var deployDir = grunt.option('destination') || '/var/www/rad-ufu/public/';
+  var commitHash = 'none';
 
   // Project configuration.
   grunt.initConfig({
@@ -113,7 +114,7 @@ module.exports = function(grunt) {
     preprocess: {
       options: {
         context: {
-          'COMMIT_HASH': 'todo: colocar o hash'
+          'COMMIT_HASH': commitHash
         }
       },
       page: {
@@ -146,17 +147,39 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('build', 'preparar o projeto para deploy', function () {
-    grunt.task.run([
-      'clean:build',
-      'setup',
-      'requirejs:build',
-      'uglify:requirejs',
-      'less:compress',
-      'preprocess:page',
-      'copy:page',
-      'copy:font',
-      'clean:buildfiles'
-    ]);
+    var done = this.async();
+
+    // spawn processo que executa o comando que pega o hash
+    grunt.util.spawn({
+
+      cmd: 'git',
+      // usando as short commit tags, conflito é pouco provável mais possível
+      args: ['log', '-n 1', '--pretty=format:%h']
+
+    }, function (err, result) {
+      if (!err) {
+        // mudamos a configuração do preprocess
+        grunt.config("preprocess.options.context.COMMIT_HASH", String(result));
+        runTasks();
+      } else
+          grunt.fail.warn(err);
+    });
+
+    function runTasks () {
+      grunt.task.run([
+        'clean:build',
+        'setup',
+        'requirejs:build',
+        'uglify:requirejs',
+        'less:compress',
+        'preprocess:page',
+        'copy:page',
+        'copy:font',
+        'clean:buildfiles'
+      ]);
+      // terminamos a task
+      done();
+    }
   });
 
   grunt.registerTask('deploy', 'copiar o build para o backend', function () {
