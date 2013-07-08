@@ -21,6 +21,9 @@ define([
 
             removeAtividade: function (ev) {
                 var id = this.$(ev.target).data("id-atividade");
+
+                ev.stopPropagation();
+
                 console.log("removendo atividade com id:", id);
                 atividadeCollection.remove(id);
             },
