@@ -54,7 +54,11 @@
       <div class="span10 offset1">
         <div id="content"></div>
         <hr>
-        <footer></footer>
+        <footer>
+          <p class="muted text-right">
+            RAD - <!-- @echo COMMIT_HASH -->
+          </p>
+        </footer>
       </div>
     </div>
   </div>

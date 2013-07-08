@@ -5,6 +5,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-preprocess');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   var deployDir = grunt.option('destination') || '/var/www/rad-ufu/public/';
 
@@ -34,10 +37,11 @@ module.exports = function(grunt) {
           dest: 'node_modules/pickadate/pickadate.js'
         }
     },
-    min: {
+    uglify: {
       requirejs: {
-        src: 'node_modules/requirejs/require.js',
-        dest: 'build/radufu/js/lib/require.js'
+        files: {
+          'build/radufu/js/lib/require.js': ['node_modules/requirejs/require.js']
+        }
       }
     },
     watch: {
@@ -60,26 +64,29 @@ module.exports = function(grunt) {
     copy: {
       setup: {
         files: [
-          { src: 'node_modules/FontAwesome/font/*', dest: 'src/font/'}
+          { expand:true, cwd: 'node_modules/FontAwesome/font/', src: ['*'], dest: 'src/font/'}
         ]
       },
       page: {
         files: [
-          { src: 'deploy.php', dest: 'build/radufu/index.php'}
+          { src: 'deploy.processed.php', dest: 'build/radufu/index.php'}
         ]
       },
       deploy: {
         files: [
-          { src: 'build/radufu/**', dest: deployDir }
+          { expand: true, cwd: 'build/radufu', src:['**'], dest: deployDir }
         ]
       },
       font: {
         files: [
-          { src: 'src/font/*', dest: 'build/radufu/font/'}
+          { expand: true, cwd: 'src/font', src: ['*'], dest: 'build/radufu/font/'}
         ]
       }
     },
     clean: {
+      options: {
+        force: true
+      },
       build: [
         'build'
       ],
@@ -98,7 +105,20 @@ module.exports = function(grunt) {
         deployDir + 'font/',
         deployDir + 'js/',
         deployDir + 'index.php'
+      ],
+      processed: [
+        'deploy.processed.php'
       ]
+    },
+    preprocess: {
+      options: {
+        context: {
+          'COMMIT_HASH': 'todo: colocar o hash'
+        }
+      },
+      page: {
+          src: 'deploy', dest: 'deploy.processed.php'
+      }
     },
     requirejs: {
       build: {
@@ -130,8 +150,9 @@ module.exports = function(grunt) {
       'clean:build',
       'setup',
       'requirejs:build',
-      'min:requirejs',
+      'uglify:requirejs',
       'less:compress',
+      'preprocess:page',
       'copy:page',
       'copy:font',
       'clean:buildfiles'
@@ -142,7 +163,9 @@ module.exports = function(grunt) {
     grunt.task.run([
       'build',
       'clean:deploy',
-      'copy:deploy'
+      'copy:deploy',
+      'clean:build',
+      'clean:processed'
     ]);
   });
 
